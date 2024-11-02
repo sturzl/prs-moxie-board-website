@@ -30,11 +30,12 @@ export default function Home() {
   const [teams, setTeams] = useState<Team[]>([]);
 
   useEffect(() => {
-    const pointsData = ref(database, 'MKE_8730');
+    const pointsData = ref(database, 'MKE_4842');
     return onValue(pointsData, (snapshot) => {
       const data = snapshot.val();
       console.log(data)
-      const newTeams: Team[] = Object.keys(data).sort().map(key =>
+      const collator = new Intl.Collator([], { numeric: true });
+      const newTeams: Team[] = Object.keys(data).sort((a, b) => collator.compare(a, b)).map(key =>
         ({ name: key, moxiePoints: parseInt(data[key]) }));
       setTeams(newTeams);
       console.log(teams);
