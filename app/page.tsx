@@ -30,7 +30,7 @@ export default function Home() {
   const [teams, setTeams] = useState<Team[]>([]);
 
   useEffect(() => {
-    const pointsData = ref(database, 'MKE_6763');
+    const pointsData = ref(database, 'MKE_4609');
     return onValue(pointsData, (snapshot) => {
       const data = snapshot.val();
       console.log(data)
